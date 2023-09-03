@@ -41,9 +41,11 @@ log_and_reboot() {
 
   logger -t "WAN-IP-Checker" "$MESSAGE"
   echo "$MESSAGE"
-  ifconfig "$INTERFACE" down
-  sleep 5
-  ifconfig "$INTERFACE" up
+  #ifconfig "$INTERFACE" down
+  #sleep 5
+  #ifconfig "$INTERFACE" up
+  . /var/etc/pppoe_restart_pppoe0
+  . /etc/rc.dyndns.update
   logger -t "WAN-IP-Checker" "$INTERFACE interface rebooted."
   echo "$INTERFACE interface rebooted."
 }
